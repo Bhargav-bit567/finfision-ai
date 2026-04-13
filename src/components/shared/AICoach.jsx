@@ -39,7 +39,10 @@ const AICoach = () => {
         user_behavior: getBehaviorData()
       };
 
-      const response = await fetch('http://localhost:5000/ai/advice', {
+      const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/ai';
+      console.log(`Fetching AI advice from: ${API_URL}/advice`);
+      
+      const response = await fetch(`${API_URL}/advice`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

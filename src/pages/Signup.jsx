@@ -41,8 +41,9 @@ export default function Signup() {
     setLoading(false);
 
     if (result.success) {
-      navigate("/dashboard");
+      navigate("/login", { state: { signupSuccess: true } });
     } else {
+
       setError(result.error || authError);
     }
   };

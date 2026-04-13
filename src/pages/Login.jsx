@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuthStore } from "../store/useAuthStore";
 import { Eye, EyeOff, TrendingUp, Mail, Lock } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const signupSuccess = location.state?.signupSuccess;
   const login = useAuthStore((s) => s.login);
   const authError = useAuthStore((s) => s.error);
   const clearError = useAuthStore((s) => s.clearError);
@@ -113,6 +115,17 @@ export default function Login() {
                 </button>
               </div>
             </div>
+
+            {signupSuccess && !error && (
+              <motion.div
+                className="auth-success"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{ color: '#10b981', background: 'rgba(16, 185, 129, 0.1)', padding: '10px', borderRadius: '8px', marginBottom: '15px', fontSize: '0.9rem', textAlign: 'center' }}
+              >
+                Account created successfully! Please sign in.
+              </motion.div>
+            )}
 
             {error && (
               <motion.div

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const API_URL = "http://localhost:5000/auth";
+const API_URL = import.meta.env.VITE_API_URL + "/api/auth";
 
 export const useAuthStore = create(
   persist(
@@ -14,6 +14,7 @@ export const useAuthStore = create(
 
       login: async (email, password) => {
         set({ isLoading: true, error: null });
+        console.log(`Attempting login for: ${email}`);
         try {
           const response = await fetch(`${API_URL}/login`, {
             method: 'POST',
@@ -21,12 +22,13 @@ export const useAuthStore = create(
             body: JSON.stringify({ email, password }),
           });
 
-          const data = await response.json();
-
-          if (!data.success) {
-            set({ error: data.message, isLoading: false });
-            return { success: false, error: data.message };
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Login failed");
           }
+
+          const data = await response.json();
+          console.log("Login successful:", data.user?.email);
 
           set({ 
             user: data.user, 
@@ -37,14 +39,17 @@ export const useAuthStore = create(
           });
           return { success: true };
         } catch (err) {
-          const msg = "Server connection failed";
+          console.error("Login Refresh Error:", err);
+          const msg = err.message === "Failed to fetch" ? "Server connection failed" : err.message;
           set({ error: msg, isLoading: false });
           return { success: false, error: msg };
         }
       },
 
+
       signup: async (name, email, password) => {
         set({ isLoading: true, error: null });
+        console.log(`Attempting signup for: ${email}`);
         try {
           const response = await fetch(`${API_URL}/signup`, {
             method: 'POST',
@@ -52,27 +57,28 @@ export const useAuthStore = create(
             body: JSON.stringify({ name, email, password }),
           });
 
-          const data = await response.json();
-
-          if (!data.success) {
-            set({ error: data.message, isLoading: false });
-            return { success: false, error: data.message };
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Signup failed");
           }
 
+          const data = await response.json();
+          console.log("Signup successful:", data.user?.email);
+
           set({ 
-            user: data.user, 
-            token: data.token, 
-            isAuthenticated: true, 
             isLoading: false,
             error: null 
           });
           return { success: true };
+
         } catch (err) {
-          const msg = "Server connection failed";
+          console.error("Signup Refresh Error:", err);
+          const msg = err.message === "Failed to fetch" ? "Server connection failed" : err.message;
           set({ error: msg, isLoading: false });
           return { success: false, error: msg };
         }
       },
+
 
       logout: () => {
         set({ user: null, token: null, isAuthenticated: false, error: null });
