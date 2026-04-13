@@ -6,10 +6,10 @@ export const useBehaviorStore = create(
     (set, get) => ({
       // --- Basic Wallet ---
       balance: 10000,
-      
+
       // --- Trading History ---
       trades: [],
-      
+
       // --- Behavioral Metrics ---
       fearScore: 30,
       fearReason: 'Market Baseline',
@@ -17,7 +17,7 @@ export const useBehaviorStore = create(
       sessionStartValue: 10000,
       interactionCount: 0,
       decisionStartedAt: Date.now(),
-      
+
       // --- Pattern Recognition State ---
       patterns: {
         confidenceScore: 68,
@@ -31,40 +31,36 @@ export const useBehaviorStore = create(
       disciplineScore: 100,
       previousScore: 100,
       scoreTrend: 'stable',
-      
+
       // --- Portfolio ---
-      holdings: [
-        { symbol: 'AAPL', name: 'Apple Inc.', qty: 10, avgPrice: 150, currentPrice: 175, sector: 'Tech' },
-        { symbol: 'TSLA', name: 'Tesla, Inc.', qty: 5, avgPrice: 200, currentPrice: 180, sector: 'Auto' },
-        { symbol: 'BTC', name: 'Bitcoin', qty: 0.5, avgPrice: 45000, currentPrice: 62000, sector: 'Crypto' }
-      ],
+      holdings: [],
 
       // --- Actions ---
-      setBalance: (update) => set((state) => ({ 
-        balance: typeof update === 'function' ? update(state.balance) : update 
+      setBalance: (update) => set((state) => ({
+        balance: typeof update === 'function' ? update(state.balance) : update
       })),
-      
+
       recordInteraction: () => {
         const state = get();
         const now = Date.now();
         // Throttle state updates to once every 1000ms to prevent re-render loops
         if (!state.lastInteractionAt || now - state.lastInteractionAt > 1000) {
-          set((state) => ({ 
+          set((state) => ({
             interactionCount: Math.min(50, state.interactionCount + 1),
             lastInteractionAt: now
           }));
         }
       },
-      
-      resetDecisionClock: () => set({ 
+
+      resetDecisionClock: () => set({
         decisionStartedAt: Date.now(),
-        interactionCount: 0 
+        interactionCount: 0
       }),
 
       updateFearScore: () => set((state) => {
         const now = Date.now();
         const timePassed = (now - state.lastFearUpdate) / 1000;
-        
+
         // 1. Decay: 1 point every 30s of "calm"
         let decay = 0;
         if (timePassed > 30) {
@@ -74,13 +70,13 @@ export const useBehaviorStore = create(
         // 2. Behavioral Signals (60% weight)
         let behavioralPoints = 0;
         let behaviorReason = '';
-        
+
         // Rapid clicking / Moving
         if (state.interactionCount > 8) {
           behavioralPoints += Math.min(50, state.interactionCount * 2);
           behaviorReason = 'High interaction frequency';
         }
-        
+
         // Fast decision making (impulsivity)
         const lastTrade = state.trades[state.trades.length - 1];
         if (lastTrade?.behaviorFlags?.includes('impulse')) {
@@ -91,11 +87,11 @@ export const useBehaviorStore = create(
         // 3. Market Changes (40% weight)
         let marketPoints = 0;
         let marketReason = '';
-        
+
         const equityValue = state.holdings.reduce((acc, stock) => acc + stock.qty * stock.currentPrice, 0);
         const totalValue = state.balance + equityValue;
         const pLDrop = ((state.sessionStartValue - totalValue) / state.sessionStartValue) * 100;
-        
+
         if (pLDrop > 1) {
           marketPoints += Math.min(40, Math.floor(pLDrop * 5));
           marketReason = 'Portfolio volatility pressure';
@@ -109,7 +105,7 @@ export const useBehaviorStore = create(
 
         // Fusion
         let calculatedScore = (state.fearScore - decay) + (behavioralPoints * 0.6) + (marketPoints * 0.4);
-        
+
         // Safety check
         if (isNaN(calculatedScore)) calculatedScore = state.fearScore;
         const newScore = Math.min(100, Math.max(10, calculatedScore));
@@ -135,69 +131,45 @@ export const useBehaviorStore = create(
       })),
 
       addTrade: (trade) => set((state) => {
-        const newTrades = [...state.trades, trade];
-        const prevScore = state.disciplineScore;
-        let scoreDelta = 0;
+        const newTrade = { ...trade, id: Date.now() };
+        const newTrades = [...state.trades, newTrade];
 
-        // --- Penalty Checks ---
-        let eventToAdd = null;
-        if (trade.behaviorFlags?.includes('impulse')) {
-          scoreDelta -= 4;
-          eventToAdd = { type: 'penalty', condition: 'impulse', timestamp: Date.now() };
-        }
-        if (trade.behaviorFlags?.includes('revenge')) {
-          scoreDelta -= 10;
-          eventToAdd = { type: 'penalty', condition: 'revenge', timestamp: Date.now() };
-        }
+        let updatedHoldings = [...state.holdings];
 
-        const newEvents = eventToAdd 
-          ? [...state.behavioralEvents, { ...eventToAdd, id: `evt-${Date.now()}`, context: { tradeId: trade.id } }] 
-          : state.behavioralEvents;
-        
-        // Erratic Sizing Check (vs average of last 5)
-        const last5Trades = state.trades.slice(-5);
-        if (last5Trades.length > 0) {
-          const avgSize = last5Trades.reduce((acc, t) => acc + t.amount, 0) / last5Trades.length;
-          if (trade.amount > avgSize * 1.5 || trade.amount < avgSize * 0.5) {
-            scoreDelta -= 4;
-          } else {
-            // Consistent sizing reward
-            scoreDelta += 2;
-          }
+        const existing = updatedHoldings.find(h => h.symbol === trade.symbol);
+
+        if (existing) {
+          // 🧠 update existing stock
+          const totalQty = existing.qty + trade.qty;
+          const totalCost =
+            existing.qty * existing.avgPrice + trade.qty * trade.price;
+
+          existing.qty = totalQty;
+          existing.avgPrice = totalCost / totalQty;
+          existing.currentPrice = trade.price;
+        } else {
+          // 🆕 add new stock
+          updatedHoldings.push({
+            symbol: trade.symbol,
+            name: trade.name || trade.symbol,
+            qty: trade.qty,
+            avgPrice: trade.price,
+            currentPrice: trade.price,
+            sector: "Simulated"
+          });
         }
 
-        // --- Reward Checks ---
-        if (!trade.behaviorFlags || trade.behaviorFlags.length === 0) {
-          if (trade.decisionMs > 5000) {
-            scoreDelta += 3;
-          }
-        }
-
-        // Calm Session Reward (+5 for every 5 clean trades)
-        const totalClean = newTrades.filter(t => !t.behaviorFlags || t.behaviorFlags.length === 0).length;
-        if (totalClean > 0 && totalClean % 5 === 0 && scoreDelta > 0) {
-          scoreDelta += 5;
-        }
-
-        let nextScore = prevScore + scoreDelta;
-        if (isNaN(nextScore)) nextScore = prevScore;
-        nextScore = Math.min(100, Math.max(20, nextScore));
-
-        const trend = nextScore > prevScore ? 'improving' : nextScore < prevScore ? 'declining' : 'stable';
-
-        return { 
+        return {
           trades: newTrades,
-          disciplineScore: nextScore,
-          previousScore: prevScore,
-          scoreTrend: trend,
-          behavioralEvents: newEvents
+          holdings: updatedHoldings,
+          balance: state.balance - trade.qty * trade.price
         };
       }),
 
       updateTrade: (id, updates) => set((state) => {
         const newTrades = state.trades.map(t => t.id === id ? { ...t, ...updates } : t);
         const trade = newTrades.find(t => t.id === id);
-        
+
         if (!trade || (updates.status !== 'won' && updates.status !== 'lost')) {
           return { trades: newTrades };
         }
@@ -205,13 +177,13 @@ export const useBehaviorStore = create(
         // Outcome-based score updates
         const prevScore = state.disciplineScore;
         let scoreDelta = updates.status === 'won' ? 5 : -10;
-        
+
         let nextScore = Math.min(100, Math.max(20, prevScore + scoreDelta));
         const trend = nextScore > prevScore ? 'improving' : nextScore < prevScore ? 'declining' : 'stable';
 
         const wins = newTrades.filter(t => t.status === 'won').length;
         const winRate = newTrades.length > 0 ? (wins / newTrades.length) * 100 : 68;
-        
+
         const fearDelta = updates.status === 'won' ? -10 : 15;
         let finalFearScore = state.fearScore + fearDelta;
         if (isNaN(finalFearScore)) finalFearScore = state.fearScore;
@@ -246,10 +218,10 @@ export const useBehaviorStore = create(
           timestamp: Date.now(),
           context
         };
-        
+
         const newEvents = [...state.behavioralEvents, event];
         const prevScore = state.disciplineScore;
-        
+
         // Penalty for ignoring warnings
         let scoreDelta = 0;
         if (type === 'warning_ignored') {
@@ -262,7 +234,7 @@ export const useBehaviorStore = create(
 
         const trend = nextScore > prevScore ? 'improving' : nextScore < prevScore ? 'declining' : 'stable';
 
-        return { 
+        return {
           behavioralEvents: newEvents,
           disciplineScore: nextScore,
           previousScore: prevScore,
@@ -274,6 +246,10 @@ export const useBehaviorStore = create(
     }),
     {
       name: 'finfision-behavior-storage',
+      partialize: (state) => ({
+        // only keep minimal data
+        balance: state.balance
+      })
     }
   )
 );

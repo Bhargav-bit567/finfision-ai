@@ -5,6 +5,7 @@ dotenv.config();
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1", // Using Groq for high performance
 });
 
 export const getAIAdvice = async (stock, price_change, volatility, user_behavior) => {
@@ -33,7 +34,7 @@ export const getAIAdvice = async (stock, price_change, volatility, user_behavior
     `;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // or gpt-4
+      model: "llama3-70b-8192", // High-performance model on Groq
       messages: [
         { role: "system", content: "You are a professional investment coach specializing in behavioral psychology." },
         { role: "user", content: prompt }

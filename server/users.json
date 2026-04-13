@@ -40,5 +40,12 @@
     "email": "testuser@example.com",
     "password": "$2b$10$lYDwV.Rx5LIzrz6X5QmyYuO8JNmNBKtWCuhAAI/qd5OT9.s9SUQuK",
     "createdAt": "2026-04-13T09:46:50.662Z"
+  },
+  {
+    "id": "46f2b780-4848-4212-a46c-fbce829c8de6",
+    "name": "asd",
+    "email": "asd@gmial.com",
+    "password": "$2b$10$7L6YJ1sWLuF6NRAwFA0ihenauNFJEUIuCyf5CGo6OwJjzmPGURpGm",
+    "createdAt": "2026-04-13T11:22:08.377Z"
   }
 ]

@@ -1,25 +1,35 @@
-/**
- * Mock API service for AI Advice
- * In production, this would be a real fetch to /ai/advice
- */
 export const fetchAIAdvice = async (stockName, behaviorData) => {
-  // Simulate network latency
-  await new Promise((resolve) => setTimeout(resolve, 2200));
+  const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + "/api/ai";
+  
+  try {
+    const response = await fetch(`${API_URL}/advice`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        stock: stockName,
+        price_change: (Math.random() * 5).toFixed(2), // In a real app, this would come from market data
+        volatility: "Medium",
+        user_behavior: {
+          clickFrequency: behaviorData.fearScore / 10,
+          hesitationTime: 2000,
+          assetSwitching: 2,
+          scrollSpeed: 1000,
+          analysisActionRatio: 0.8
+        }
+      })
+    });
 
-  // Determine advice based on fear index and stock
-  const { fearScore, confidenceScore } = behaviorData;
-
-  // Realistic response structure
-  return {
-    stock: stockName,
-    recommendation: fearScore > 65 ? "Avoid" : confidenceScore > 75 ? "Buy" : "Hold",
-    confidence: Math.round(70 + Math.random() * 25),
-    reasoning: fearScore > 65 
-      ? "Current market sentiment and your recent hesitation patterns suggest a high risk of panic selling. It's better to wait for a clearer trend."
-      : "The underlying asset shows strong recovery potential, and your decision timing has been disciplined. A small position entry is statistically sound.",
-    emotionalWarning: fearScore > 60 
-      ? "Warning: Your recent interaction speed suggests elevated anxiety. Consider activating 'Calm Mode' before placing this trade."
-      : "Your emotional state appears stable. Maintain your current process.",
-    timestamp: new Date().toISOString()
-  };
+    if (!response.ok) throw new Error("API responded with error");
+    const data = await response.json();
+    
+    // Map backend response to frontend format
+    return {
+      ...data,
+      stock: stockName,
+      emotionalWarning: data.warning || data.emotional_insight
+    };
+  } catch (error) {
+    console.error("AI Advisor Error:", error);
+    throw error;
+  }
 };

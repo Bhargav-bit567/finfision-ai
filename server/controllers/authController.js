@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import { findUserByEmail, createUser } from '../services/userService.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'finfision_super_secret_key';

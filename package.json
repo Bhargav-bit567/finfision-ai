@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "concurrently -n \"web,server\" -c \"cyan,magenta\" \"vite --host 0.0.0.0\" \"npm run server\"",
+    "server": "cd server && npm run dev",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0"
   },
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.2.1",
     "vite": "^6.0.7"
   }
 }
