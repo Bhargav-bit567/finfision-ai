@@ -1,0 +1,37 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - link "Finfision" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+        - generic [ref=e11]: Finfision
+      - img [ref=e15]
+      - generic [ref=e18]:
+        - heading "Harness the psychology of markets." [level=2] [ref=e19]
+        - paragraph [ref=e20]: Our behavioral engine tracks emotional bias and discipline to give you a genuine trading edge.
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - heading "Welcome back" [level=1] [ref=e23]
+        - paragraph [ref=e24]: Sign in to your account to continue
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: Email
+          - generic [ref=e28]:
+            - img
+            - textbox "Email" [ref=e29]:
+              - /placeholder: you@example.com
+        - generic [ref=e30]:
+          - generic [ref=e31]: Password
+          - generic [ref=e32]:
+            - img
+            - textbox "Password" [ref=e33]:
+              - /placeholder: ••••••••
+            - button "Show password" [ref=e34] [cursor=pointer]:
+              - img [ref=e35]
+        - button "Sign In" [ref=e38] [cursor=pointer]
+      - paragraph [ref=e39]:
+        - text: Don't have an account?
+        - link "Create one free" [ref=e40] [cursor=pointer]:
+          - /url: /signup
+  - button [ref=e43] [cursor=pointer]:
+    - img [ref=e44]

@@ -1,0 +1,186 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - complementary [ref=e4]:
+      - button [ref=e5] [cursor=pointer]:
+        - img [ref=e6]
+      - navigation "Trading navigation" [ref=e8]:
+        - link "Trades" [ref=e9] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e10]
+        - link "Market" [ref=e15] [cursor=pointer]:
+          - /url: /dashboard/explore
+          - img [ref=e16]
+        - link "Analysis" [ref=e19] [cursor=pointer]:
+          - /url: /dashboard/analysis
+          - img [ref=e20]
+        - link "Advisor" [ref=e22] [cursor=pointer]:
+          - /url: /dashboard/advisor
+          - img [ref=e23]
+      - button [ref=e35] [cursor=pointer]:
+        - img [ref=e36]
+    - generic [ref=e39]:
+      - generic "Financial news ticker" [ref=e40]:
+        - generic [ref=e41]: LIVE
+        - generic [ref=e44]:
+          - generic [ref=e45]:
+            - generic [ref=e46]: /
+            - text: RBI keeps liquidity stance steady as markets await earnings
+          - generic [ref=e47]:
+            - generic [ref=e48]: /
+            - text: Tech shares lead Asia session while volatility cools
+          - generic [ref=e49]:
+            - generic [ref=e50]: /
+            - text: Energy names recover after two-day pullback
+          - generic [ref=e51]:
+            - generic [ref=e52]: /
+            - text: Analysts flag disciplined sizing as retail participation rises
+          - generic [ref=e53]:
+            - generic [ref=e54]: /
+            - text: Institutional flow indicates accumulation at support zones
+          - generic [ref=e55]:
+            - generic [ref=e56]: /
+            - text: RBI keeps liquidity stance steady as markets await earnings
+          - generic [ref=e57]:
+            - generic [ref=e58]: /
+            - text: Tech shares lead Asia session while volatility cools
+          - generic [ref=e59]:
+            - generic [ref=e60]: /
+            - text: Energy names recover after two-day pullback
+          - generic [ref=e61]:
+            - generic [ref=e62]: /
+            - text: Analysts flag disciplined sizing as retail participation rises
+          - generic [ref=e63]:
+            - generic [ref=e64]: /
+            - text: Institutional flow indicates accumulation at support zones
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - button "Add Asia Composite Index to watchlist" [ref=e67] [cursor=pointer]: ★
+          - generic [ref=e68]:
+            - generic [ref=e69]: Asia Composite Index
+            - strong [ref=e70]: 2,982.83
+          - emphasis [ref=e71]: +6.28 pts
+        - generic [ref=e72]:
+          - generic [ref=e73]: Win rate 0%
+          - generic [ref=e74]: 0 open
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - img "Simulated candlestick chart" [ref=e77]:
+            - img [ref=e78]:
+              - generic [ref=e83]:
+                - generic [ref=e84]: S&P 500 - mini Futures - 5 - CME
+                - generic [ref=e85]: O 2982.83 H 3024.74 L 2938.82 C 2982.83
+                - generic [ref=e86]: +
+                - generic [ref=e87]: /
+                - generic [ref=e88]: "-"
+                - generic [ref=e89]: =
+                - generic [ref=e90]: "[]"
+                - generic [ref=e91]: "|"
+                - generic [ref=e92]: P
+                - generic [ref=e93]: ^
+                - generic [ref=e94]: ~
+                - generic [ref=e95]: fx
+                - generic [ref=e96]: mag
+                - generic [ref=e97]: grid
+              - generic [ref=e98]:
+                - generic [ref=e99]: =
+                - generic [ref=e100]: M
+                - generic [ref=e101]: ">"
+                - generic [ref=e102]: F
+                - generic [ref=e103]: +
+                - generic [ref=e104]: Q
+                - generic [ref=e105]: fx
+                - generic [ref=e106]: A
+                - generic [ref=e107]: T
+                - generic [ref=e108]: B
+                - generic [ref=e109]: C
+              - generic [ref=e256]: "2982.83"
+              - generic [ref=e257]:
+                - generic [ref=e258]: "3025"
+                - generic [ref=e259]: "3012"
+                - generic [ref=e260]: "3000"
+                - generic [ref=e261]: "2988"
+                - generic [ref=e262]: "2976"
+                - generic [ref=e263]: "2963"
+                - generic [ref=e264]: "2951"
+                - generic [ref=e265]: "2939"
+          - generic "Time frame selector" [ref=e266]:
+            - button "5s" [ref=e267] [cursor=pointer]
+            - button "1m" [ref=e268] [cursor=pointer]
+            - button "5m" [ref=e269] [cursor=pointer]
+            - button "15m" [ref=e270] [cursor=pointer]
+            - button "1h" [ref=e271] [cursor=pointer]
+            - button "4h" [ref=e272] [cursor=pointer]
+            - button "1d" [ref=e273] [cursor=pointer]
+          - generic [ref=e274]:
+            - generic [ref=e275]: 0 / 12 active trades
+            - generic [ref=e276]: Market simulation live
+            - button "•••" [ref=e277] [cursor=pointer]
+        - complementary [ref=e278]:
+          - region "Trade configuration" [ref=e279]:
+            - generic [ref=e280]:
+              - generic [ref=e281]: Practice balance
+              - strong [ref=e282]: ₹99,920
+            - generic [ref=e283]:
+              - text: Investment
+              - generic [ref=e284]:
+                - button "Investment ₹70 +" [ref=e285] [cursor=pointer]: −
+                - textbox "Investment amount" [ref=e286]: ₹70
+                - button "+" [ref=e287] [cursor=pointer]
+            - generic [ref=e288]:
+              - text: Duration
+              - generic [ref=e289]:
+                - button "Duration 45s +" [active] [ref=e383] [cursor=pointer]: −
+                - textbox [ref=e291]: 45s
+                - button "+" [ref=e292] [cursor=pointer]
+            - generic [ref=e293]:
+              - generic [ref=e294]: Profit
+              - strong [ref=e295]: 85%
+            - button "↑ UP" [ref=e296] [cursor=pointer]
+            - button "↓ DOWN" [ref=e297] [cursor=pointer]
+            - generic [ref=e298]:
+              - text: Enable orders
+              - checkbox "Enable orders" [checked] [ref=e299]
+          - generic [ref=e300]:
+            - generic [ref=e301]:
+              - generic [ref=e302]: Fear index
+              - strong [ref=e303]: Calm
+            - generic [ref=e305]: "8"
+            - paragraph [ref=e306]: Behavior is steady. Keep the same sizing and pacing.
+          - generic [ref=e307]:
+            - generic [ref=e308]:
+              - generic [ref=e309]: Emotion timeline
+              - strong [ref=e310]: Live
+            - img "Fear trend line" [ref=e311]
+          - generic [ref=e331]:
+            - generic [ref=e332]:
+              - generic [ref=e333]: AI coach
+              - strong [ref=e334]: 0 trades
+            - paragraph [ref=e335]: Good rhythm. Your sizing and execution pace look consistent.
+            - paragraph [ref=e336]: Keep holding trades to expiry and review the entry point afterward.
+            - generic [ref=e337]: "Milestone: steady sizing streak"
+          - generic [ref=e338]:
+            - generic [ref=e339]:
+              - generic [ref=e340]: Watchlist
+              - strong [ref=e341]: Live
+            - generic [ref=e342]:
+              - generic [ref=e343]: NIFTY 50
+              - strong [ref=e344]: 22,418.65
+              - emphasis [ref=e345]: +0.39%
+            - generic [ref=e346]:
+              - generic [ref=e347]: SENSEX
+              - strong [ref=e348]: 73,820.11
+              - emphasis [ref=e349]: "-0.35%"
+            - generic [ref=e350]:
+              - generic [ref=e351]: BANKNIFTY
+              - strong [ref=e352]: 48,125.4
+              - emphasis [ref=e353]: +0.16%
+            - generic [ref=e354]:
+              - generic [ref=e355]: RELIANCE
+              - strong [ref=e356]: 2,954.58
+              - emphasis [ref=e357]: +0.26%
+            - generic [ref=e358]:
+              - generic [ref=e359]: TCS
+              - strong [ref=e360]: 3,950
+              - emphasis [ref=e361]: "-0.57%"
+  - button [ref=e364] [cursor=pointer]:
+    - img [ref=e365]

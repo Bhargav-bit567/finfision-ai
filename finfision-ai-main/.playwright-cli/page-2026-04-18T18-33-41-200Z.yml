@@ -1,0 +1,169 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - complementary [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e7]
+        - generic [ref=e10]: Finfision
+        - button "Collapse sidebar" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+      - generic [ref=e14]: Navigation
+      - navigation [ref=e15]:
+        - link "Overview" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e19]
+          - generic [ref=e24]: Overview
+        - link "Portfolio" [ref=e26] [cursor=pointer]:
+          - /url: /dashboard/portfolio
+          - img [ref=e28]
+          - generic [ref=e31]: Portfolio
+        - link "Analysis" [ref=e34] [cursor=pointer]:
+          - /url: /dashboard/analysis
+          - img [ref=e36]
+          - generic [ref=e38]: Analysis
+        - link "AI Advisor" [ref=e40] [cursor=pointer]:
+          - /url: /dashboard/advisor
+          - img [ref=e42]
+          - generic [ref=e50]: AI Advisor
+        - link "Market Explore" [ref=e52] [cursor=pointer]:
+          - /url: /dashboard/explore
+          - img [ref=e54]
+          - generic [ref=e57]: Market Explore
+        - link "Compare Assets" [ref=e59] [cursor=pointer]:
+          - /url: /dashboard/compare
+          - img [ref=e61]
+          - generic [ref=e66]: Compare Assets
+        - link "Financial News" [ref=e68] [cursor=pointer]:
+          - /url: /dashboard/news
+          - img [ref=e70]
+          - generic [ref=e73]: Financial News
+      - generic [ref=e74]:
+        - button "Launch Terminal" [ref=e75] [cursor=pointer]:
+          - img [ref=e76]
+          - generic [ref=e79]: Launch Terminal
+        - generic [ref=e80]:
+          - generic [ref=e81]: U
+          - generic [ref=e82]:
+            - generic [ref=e83]: Demo User
+            - generic [ref=e84]: demo@finfision.local
+          - button "Sign out" [ref=e85] [cursor=pointer]:
+            - img [ref=e86]
+    - generic [ref=e89]:
+      - banner [ref=e90]:
+        - generic [ref=e91]:
+          - generic [ref=e92]: Finfision
+          - generic [ref=e93]: /
+          - generic [ref=e94]: Portfolio
+        - generic [ref=e95]:
+          - button "Search stocks" [ref=e96] [cursor=pointer]:
+            - img [ref=e97]
+          - button "3" [ref=e100] [cursor=pointer]:
+            - img [ref=e101]
+            - generic [ref=e104]: "3"
+          - button "Settings" [ref=e105] [cursor=pointer]:
+            - img [ref=e106]
+          - generic "demo@finfision.local" [ref=e109]: U
+      - generic [ref=e111]:
+        - banner [ref=e112]:
+          - generic [ref=e113]:
+            - generic [ref=e114]: Performance & Behavior
+            - heading "My Portfolio" [level=1] [ref=e115]
+        - generic [ref=e116]:
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - generic [ref=e120]: Wallet Balance
+              - strong [ref=e121]:
+                - generic [ref=e122]: ₹0
+              - generic [ref=e123]: Available to trade
+              - img [ref=e124]
+            - generic [ref=e127]:
+              - generic [ref=e128]: Equity Value
+              - strong [ref=e129]:
+                - generic [ref=e130]: ₹0
+              - generic [ref=e131]: 0 Assets
+              - img [ref=e132]
+            - generic [ref=e135]:
+              - generic [ref=e136]: Total Net Worth
+              - strong [ref=e137]:
+                - generic [ref=e138]: ₹0
+              - generic [ref=e139]: Portfolio + Cash
+              - img [ref=e140]
+            - generic [ref=e143]:
+              - generic [ref=e144]: Total P/L
+              - strong [ref=e145]:
+                - generic [ref=e146]: "-₹0.00"
+              - generic [ref=e147]: "-0.15%"
+              - img [ref=e148]
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - generic [ref=e153]:
+                - generic [ref=e154]:
+                  - heading "Current Holdings" [level=3] [ref=e155]
+                  - generic [ref=e156]: 0 Assets
+                - table [ref=e158]:
+                  - rowgroup [ref=e159]:
+                    - row "Asset Qty Avg Price Current P/L" [ref=e160]:
+                      - columnheader "Asset" [ref=e161]
+                      - columnheader "Qty" [ref=e162]
+                      - columnheader "Avg Price" [ref=e163]
+                      - columnheader "Current" [ref=e164]
+                      - columnheader "P/L" [ref=e165]
+                  - rowgroup
+              - generic [ref=e166]:
+                - heading "Asset Allocation" [level=3] [ref=e167]
+                - paragraph [ref=e168]: No active holdings to display.
+            - generic [ref=e169]:
+              - generic [ref=e170]:
+                - generic [ref=e171]:
+                  - heading "Recent Trade Activity" [level=3] [ref=e172]
+                  - generic [ref=e173]: Last 10 trades
+                - generic [ref=e175]: No trades recorded in this session.
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - heading "Live AI Feedback" [level=3] [ref=e178]
+                  - img [ref=e179]
+                - generic [ref=e184]:
+                  - heading "System Ready" [level=4] [ref=e185]
+                  - paragraph [ref=e186]: Watching your behavior patterns. Execute your trades naturally to populate AI insights.
+          - complementary [ref=e189]:
+            - generic [ref=e190]:
+              - generic [ref=e191]:
+                - heading "Fear Score" [level=3] [ref=e192]
+                - generic [ref=e193]:
+                  - img [ref=e194]
+                  - generic [ref=e197]:
+                    - generic [ref=e198]: "8"
+                    - text: Calm
+                - generic [ref=e199]: Calm baseline
+                - generic [ref=e200]:
+                  - heading "Fear analysis result" [level=4] [ref=e201]
+                  - paragraph [ref=e202]: Behavior is steady. Keep the same sizing and pacing.
+                  - generic [ref=e203]:
+                    - generic [ref=e204]:
+                      - text: Avg decision
+                      - strong [ref=e205]: 5s
+                    - generic [ref=e206]:
+                      - text: Loss streak
+                      - strong [ref=e207]: "0"
+                    - generic [ref=e208]:
+                      - text: Open trades
+                      - strong [ref=e209]: "0"
+                    - generic [ref=e210]:
+                      - text: Drawdown
+                      - strong [ref=e211]: 0%
+                  - generic [ref=e212]: No pressure driver detected yet.
+              - generic [ref=e213]:
+                - generic [ref=e214]:
+                  - heading "Discipline Score" [level=3] [ref=e215]
+                  - img [ref=e217]
+                - generic [ref=e220]:
+                  - generic [ref=e221]: "90"
+                  - generic [ref=e222]: High Discipline
+              - generic [ref=e225]:
+                - heading "Decision Confidence" [level=3] [ref=e226]
+                - generic [ref=e227]:
+                  - generic [ref=e228]:
+                    - generic [ref=e229]: Expert Consistency
+                    - generic [ref=e230]: 68%
+                  - paragraph [ref=e232]: Based on your recent win/loss consistency.
+  - button [ref=e235] [cursor=pointer]:
+    - img [ref=e236]

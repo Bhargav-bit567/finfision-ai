@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "1776080983376",
+    "name": "Bhargav Sharma",
+    "email": "bhargavsharma090@gmail.com",
+    "password": "$2b$10$nN6detqp8XPWejhbgI.B6.zBInk/cpIGn7bY09EIGeC3wBdn1UiGG",
+    "createdAt": "2026-04-13T11:49:43.376Z"
+  },
+  {
+    "_id": "1776081049058",
+    "name": "Bhargav Sharma",
+    "email": "bhargavsharma@gmail.com",
+    "password": "$2b$10$rNhujk2xCQjtae9vvcusteEBiBii4ivmQbqvfOwuEdzBMRu3H2q/a",
+    "createdAt": "2026-04-13T11:50:49.058Z"
+  }
+]
